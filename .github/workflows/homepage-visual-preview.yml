@@ -1,0 +1,67 @@
+name: Homepage visual preview
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Start local website
+        run: |
+          python3 -m http.server 4173 --directory . > /tmp/site-preview.log 2>&1 &
+          for i in {1..20}; do
+            if curl --silent --fail http://127.0.0.1:4173/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Capture mobile and desktop homepage
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const mobile = await browser.newPage({
+            viewport: { width: 390, height: 844 },
+            deviceScaleFactor: 2,
+            isMobile: true,
+            hasTouch: true
+          });
+          await mobile.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
+          await mobile.screenshot({ path: 'homepage-mobile.png', fullPage: true });
+          const desktop = await browser.newPage({
+            viewport: { width: 1440, height: 1000 },
+            deviceScaleFactor: 1
+          });
+          await desktop.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
+          await desktop.screenshot({ path: 'homepage-desktop.png', fullPage: true });
+          await browser.close();
+          NODE
+
+      - name: Upload preview screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-visual-preview
+          path: |
+            homepage-mobile.png
+            homepage-desktop.png
+          retention-days: 7
