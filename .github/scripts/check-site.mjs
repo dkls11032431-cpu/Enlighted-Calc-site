@@ -48,7 +48,7 @@ function toRepoPath(urlPath, fromFile) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
-  const scanHtml = html.replace(/<!--[\\s\\S]*?-->/g, "");
+  const scanHtml = html.replace(/<!--[\s\S]*?-->/g, "");
   const ids = idsFor(file, scanHtml);
   if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(file + ": missing page title");
   if (file !== "404.html" && !/<meta\s+name=["']description["']\s+content=["'][^"']+["']/i.test(html)) {
@@ -56,7 +56,7 @@ for (const file of htmlFiles) {
   }
   if (/<img\b(?![^>]*\balt=)[^>]*>/i.test(html)) errors.push(file + ": image missing alt text");
 
-  const refs = [...html.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)].map(m => m[1]);
+  const refs = [...scanHtml.matchAll(/\b(?:href|src)=["']([^"']+)["']/gi)].map(m => m[1]);
   for (const ref of refs) {
     if (!ref || /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(ref)) continue;
     let parsed;
