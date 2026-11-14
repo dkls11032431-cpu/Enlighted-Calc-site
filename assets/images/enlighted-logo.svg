@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 546" role="img" aria-labelledby="title desc">
+<title id="title">Enlighted Technologies</title>
+<desc id="desc">Blue and white Enlighted Technologies logo with ET monogram.</desc>
+<rect width="1536" height="546" fill="#07558a"/>
+<rect x="86" y="102" width="344" height="342" rx="9" fill="#fff"/>
+<path d="M164 150H362Q374 150 374 162V210Q374 222 362 222H230V262H345Q357 262 357 274V318Q357 330 345 330H230V383H362Q374 383 374 395V431Q374 443 362 443H164Q151 443 151 430V163Q151 150 164 150Z" fill="#07558a"/>
+<path d="M337 264H414Q426 264 426 276V430Q426 443 414 443H373Q361 443 361 430V323H337Q325 323 325 311V276Q325 264 337 264Z" fill="#07558a"/>
+<g fill="#fff" font-family="Arial, Helvetica, sans-serif" font-weight="400" letter-spacing="2">
+<text x="455" y="235" font-size="128">ENLIGHTED</text>
+<text x="455" y="382" font-size="128">TECHNOLOGIES</text>
+</g>
+</svg>
