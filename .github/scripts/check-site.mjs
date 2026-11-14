@@ -17,7 +17,7 @@ function walk(dir) {
     }
     const abs = path.join(dir, ent.name);
     const rel = path.relative(root, abs).split(path.sep).join("/");
-    if (ent.name.endsWith(".html")) htmlFiles.push(rel);
+    if (ent.name.endsWith(".html") && rel !== "googlee81ade407c193009.html") htmlFiles.push(rel);
     assetFiles.push(rel);
   }
 }
@@ -48,7 +48,8 @@ function toRepoPath(urlPath, fromFile) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
-  const ids = idsFor(file, html);
+  const scanHtml = html.replace(/<!--[\\s\\S]*?-->/g, "");
+  const ids = idsFor(file, scanHtml);
   if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(file + ": missing page title");
   if (file !== "404.html" && !/<meta\s+name=["']description["']\s+content=["'][^"']+["']/i.test(html)) {
     errors.push(file + ": missing meta description");
