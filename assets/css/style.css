@@ -455,3 +455,28 @@ a{transition:color .18s ease,border-color .18s ease,background-color .18s ease}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+
+/* Dark surfaces for the two standalone interactive calculators */
+.tool-panel,.panel{
+  background:#102338!important;border-color:#2b4359!important;color:#e8f0f7;
+}
+.tool-panel h2,.panel h2{color:#e8f2fa!important}
+.tool-panel>p,.panel>p,.tool-intro,.intro,.tip,.result-note{color:#b2c2cf!important}
+.field label,.appliance-row label{color:#dce8f1!important}
+.field input,.appliance-row input,.appliance-row select{
+  background:#091827!important;color:#edf5fa!important;border:1px solid #38546a!important;
+}
+.field input::placeholder,.appliance-row input::placeholder{color:#8298aa}
+.calculate,.primary{background:#087da5!important;color:#fff!important}
+.secondary{background:#1a3b52!important;color:#bfeeff!important}
+.remove{background:#482b30!important;color:#ffc7c2!important}
+.appliance-row{background:#0b1b2b!important;border-color:#2b4359!important}
+.appliance-row .device-name{color:#e8f2fa!important}
+.metric{background:#142d42!important;border-color:#2b4a61!important}
+.metric span,.cashflow th{color:#b0c2d0!important}
+.metric strong{color:#e9f5fb!important}
+.metric.primary,.metric.highlight{background:#12394a!important;border-color:#28657a!important}
+.metric.primary strong,.metric.highlight strong{color:#8ce4ed!important}
+.cashflow th,.cashflow td,.breakdown th,.breakdown td{border-color:#2b4359!important;color:#c1d0dc}
+.assumption,.note{background:#302b1d!important;border-color:#65532d!important;color:#f0d79a!important}
