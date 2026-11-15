@@ -15,7 +15,7 @@ document.addEventListener('click',function(event){
   let url;
   try{url=new URL(link.href,location.href);}catch(_){url=null;}
   if(url&&/^https?:$/.test(url.protocol)&&url.origin!==location.origin){
-   const affiliate=/amazon\.(?:in|com)(?:\.|\/)/i.test(url.hostname)&&(/(?:[?&]tag=enlightedinc-21\b/i.test(url.search)||url.hostname.endsWith('amazon.in')));
+   const affiliate=/amazon\./i.test(url.hostname)&&/(?:[?&])tag=enlightedinc-21(?:&|$)/i.test(url.search);
    window.dataLayer=window.dataLayer||[];
    window.dataLayer.push({
     event:affiliate?'affiliate_click':'outbound_click',
