@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-15",
+  "update_policy": "Only publish exact-model facts with source_url, checked_at, and verification_status. Do not infer BEE ratings or retailer review data.",
+  "sources": {
+    "bee": {
+      "name": "Bureau of Energy Efficiency Standards & Labelling",
+      "url": "https://beeindia.gov.in/",
+      "data_access": "Official consumer app is linked to BEE S&L database and states daily updates; public bulk API/reuse permission not confirmed."
+    },
+    "pm_surya_ghar": {
+      "name": "PM Surya Ghar",
+      "url": "https://pmsuryaghar.gov.in/"
+    },
+    "tn_solar": {
+      "name": "Tamil Nadu Solar Homes Portal",
+      "url": "https://www.tnebltd.gov.in/usrp/"
+    }
+  },
+  "categories": [
+    {
+      "id": "washing-machines",
+      "name": "Washing machines",
+      "subcategories": [
+        "front-load-fully-automatic",
+        "top-load-fully-automatic",
+        "semi-automatic",
+        "fully-automatic-with-heater"
+      ]
+    },
+    {
+      "id": "air-conditioners",
+      "name": "Air conditioners",
+      "subcategories": [
+        "split-inverter",
+        "window",
+        "3-star",
+        "5-star"
+      ]
+    },
+    {
+      "id": "refrigerators",
+      "name": "Refrigerators",
+      "subcategories": [
+        "single-door",
+        "double-door",
+        "side-by-side",
+        "convertible"
+      ]
+    },
+    {
+      "id": "fans",
+      "name": "Ceiling fans",
+      "subcategories": [
+        "bldc",
+        "conventional"
+      ]
+    },
+    {
+      "id": "water-heaters",
+      "name": "Water heaters",
+      "subcategories": [
+        "storage",
+        "instant",
+        "solar"
+      ]
+    },
+    {
+      "id": "televisions",
+      "name": "Televisions",
+      "subcategories": [
+        "led",
+        "qled",
+        "oled"
+      ]
+    },
+    {
+      "id": "kitchen-appliances",
+      "name": "Kitchen appliances",
+      "subcategories": [
+        "microwave",
+        "mixer-grinder",
+        "induction-cooktop",
+        "dishwasher"
+      ]
+    },
+    {
+      "id": "other-home-appliances",
+      "name": "Other home appliances",
+      "subcategories": [
+        "air-cooler",
+        "water-purifier",
+        "iron",
+        "water-pump"
+      ]
+    }
+  ],
+  "products": [],
+  "product_record_required_fields": [
+    "brand",
+    "model_number",
+    "category_id",
+    "subcategory_id",
+    "source_url",
+    "checked_at",
+    "verification_status"
+  ],
+  "bee_record_required_fields": [
+    "bee_star_rating",
+    "label_period_start",
+    "label_period_end",
+    "bee_source_url",
+    "bee_checked_at"
+  ],
+  "retailer_record_required_fields": [
+    "retailer",
+    "product_url",
+    "price_inr",
+    "rating",
+    "review_count",
+    "checked_at"
+  ]
+}
