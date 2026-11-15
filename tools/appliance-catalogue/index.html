@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Appliance Catalogue Editor | Enlighted Tools</title><meta name="description" content="Private, no-index utility for preparing source-verified appliance catalogue records."><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="/assets/css/style.css"><style>
+.editor{max-width:980px;margin:auto}.editor-panel{background:#fff;border:1px solid #dce6eb;border-radius:16px;padding:22px;margin:18px 0}.editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.editor label{display:block;font-size:13px;font-weight:700;color:#294657}.editor input,.editor select,.editor textarea{width:100%;margin-top:6px;padding:11px;border:1px solid #cbd9df;border-radius:8px;font:inherit;background:#fff;color:#173246}.editor textarea{min-height:76px}.editor .wide{grid-column:1/-1}.editor small,.hint{color:#627784;font-size:12px}.editor-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.editor button{border:0;border-radius:9px;padding:12px 17px;font-weight:800;cursor:pointer}.primary{background:#087f78;color:white}.secondary{background:#e9f1f4;color:#18394c}.danger{background:#fff0ed;color:#9c392b}.records{display:grid;gap:8px}.record{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid #dce6eb;border-radius:10px}.record strong{display:block}.record button{padding:7px 10px}.status{margin-top:12px;font-size:13px;font-weight:700}.ok{color:#087f55}.error{color:#b42318}@media(max-width:620px){.editor-grid{grid-template-columns:1fr}.editor .wide{grid-column:auto}}
+</style></head><body class="inner-platform"><a class="skip" href="#main">Skip to content</a><header class="header"><div class="container nav-wrap"><a class="brand brand-logo-link" href="/" aria-label="Enlighted Technologies home"><img class="brand-logo" src="/assets/images/enlighted-logo.jpg" alt="Enlighted Technologies"></a><nav class="nav" aria-label="Main navigation"><a href="/reviews/">Appliance hub</a><a href="/reviews/appliance-categories/">Categories</a><a class="nav-cta" href="/">Home</a></nav></div></header>
+<main id="main" class="container section editor"><div class="eyebrow">INTERNAL UTILITY / NO-INDEX</div><h1>Appliance catalogue editor</h1><p class="hero-lead">Prepare exact-model records for the Enlighted appliance directory. Every published price, rating, BEE label or review count must have its own source URL and checked date. This tool runs in your browser; it does not upload or save data to a server.</p>
+<div class="editor-panel"><h2>Product identity</h2><div class="editor-grid">
+<label>Brand *<input id="brand" required placeholder="e.g. Samsung"></label>
+<label>Exact model number *<input id="model" required placeholder="e.g. WA80BG4441BG"></label>
+<label>Category *<select id="category"><option value="">Choose category</option><option value="washing-machines">Washing machines</option><option value="air-conditioners">Air conditioners</option><option value="refrigerators">Refrigerators</option><option value="fans">Ceiling fans</option><option value="water-heaters">Water heaters</option><option value="televisions">Televisions</option><option value="kitchen-appliances">Kitchen appliances</option><option value="other-home-appliances">Other home appliances</option></select></label>
+<label>Subcategory<input id="subcategory" placeholder="e.g. top-load-fully-automatic"></label>
+<label class="wide">Official product specification URL *<input id="specUrl" type="url" placeholder="https://brand-official-site.example/model" required></label>
+<label>Verification status<select id="verification"><option value="verified">Verified against source</option><option value="pending">Pending review — do not publish</option></select></label>
+<label>Checked date *<input id="checkedAt" type="date" required></label>
+<label class="wide">Key specifications (one per line: name: value)<textarea id="specs" placeholder="Capacity: 8 kg&#10;Rated power: ...&#10;Annual energy consumption: ..."></textarea></label>
+</div></div>
+<div class="editor-panel"><h2>Optional evidence (only enter if verified)</h2><div class="editor-grid">
+<label>BEE star rating<input id="beeStars" type="number" min="1" max="5" step="1" placeholder="1–5"></label>
+<label>BEE label period end<input id="beeEnd" type="date"></label>
+<label class="wide">BEE official label / database URL<input id="beeUrl" type="url" placeholder="https://beeindia.gov.in/..."></label>
+<label>Retailer price (₹)<input id="price" type="number" min="0" step="1" placeholder="e.g. 24990"></label>
+<label>Retailer rating<input id="rating" type="number" min="0" max="5" step="0.1" placeholder="0–5"></label>
+<label>Review count<input id="reviews" type="number" min="0" step="1" placeholder="number of reviews"></label>
+<label>Retailer name<input id="retailer" placeholder="Amazon India / Flipkart"></label>
+<label class="wide">Retailer product URL<input id="retailerUrl" type="url" placeholder="https://..."></label>
+<label>Retailer data checked date<input id="retailerDate" type="date"></label>
+<label>Affiliate URL (optional)<input id="affiliateUrl" type="url" placeholder="Tagged product link"></label>
+<label class="wide">Editorial notes<textarea id="notes" placeholder="Limitations, model-variant checks, warranty details, review caveats..."></textarea></label>
+</div><p class="hint">If you enter a BEE rating, provide its official source URL and label period. If you enter a price, rating or review count, provide the retailer URL and checked date. Do not copy individual customer reviews unless permitted by the source terms.</p>
+<div class="editor-actions"><button class="primary" id="add">Validate & add product</button><button class="secondary" id="export">Export JSON</button><button class="danger" id="clear">Clear session</button></div><div id="status" class="status" role="status" aria-live="polite"></div></div>
+<div class="editor-panel"><h2>Records prepared in this session</h2><p class="hint">Nothing is stored permanently. Export the JSON and review it before committing it to the website repository.</p><div id="records" class="records"><p class="hint">No records added yet.</p></div></div>
+<div class="editor-panel"><h2>Publishing checklist</h2><ol><li>Confirm exact model number and variant from the manufacturer's product page or datasheet.</li><li>Verify BEE label and validity period on an official BEE source; leave blank if not applicable or unavailable.</li><li>Check retailer price, rating and count on the exact product listing, not a similar variant.</li><li>Record the source URL and date for every time-sensitive field.</li><li>Review affiliate programme terms and disclosure before publishing tagged links.</li><li>Do not publish records marked pending or records with missing evidence.</li></ol><p><a href="/reviews/appliance-categories/">Return to appliance category hub ↗</a></p></div>
+</main><footer class="footer"><div class="container footer-bottom"><span>© <span id="year"></span> Enlighted Technologies</span><span>Internal data preparation utility</span></div></footer>
+<script>
+(function(){
+const $=id=>document.getElementById(id);const records=[];
+const today=new Date().toISOString().slice(0,10);$('checkedAt').value=today;
+function validUrl(value){if(!value)return false;try{const u=new URL(value);return u.protocol==='https:'||u.protocol==='http:';}catch{return false;}}
+function message(text,kind){$('status').textContent=text;$('status').className='status '+(kind||'');}
+function specsFromText(text){return text.split(/\n/).map(x=>x.trim()).filter(Boolean).map(line=>{const i=line.indexOf(':');if(i<1)throw new Error('Use “name: value” for each specification line.');return {name:line.slice(0,i).trim(),value:line.slice(i+1).trim()};});}
+function render(){const root=$('records');root.replaceChildren();if(!records.length){root.innerHTML='<p class="hint">No records added yet.</p>';return;}records.forEach((r,i)=>{const div=document.createElement('div');div.className='record';const info=document.createElement('div');const strong=document.createElement('strong');strong.textContent=r.brand+' '+r.model_number;const sub=document.createElement('small');sub.textContent=r.category_id+' · '+r.verification_status+' · '+r.checked_at;info.append(strong,sub);const btn=document.createElement('button');btn.className='danger';btn.textContent='Remove';btn.addEventListener('click',()=>{records.splice(i,1);render();message('Record removed.','ok');});div.append(info,btn);root.append(div);});}
+$('add').addEventListener('click',()=>{
+try{
+const brand=$('brand').value.trim(),model=$('model').value.trim(),category=$('category').value,specUrl=$('specUrl').value.trim(),checked=$('checkedAt').value;
+if(!brand||!model||!category||!specUrl||!checked)throw new Error('Complete all required product identity fields.');
+if(!validUrl(specUrl))throw new Error('Enter a valid HTTPS/HTTP official specification URL.');
+if(records.some(r=>r.model_number.toLowerCase()===model.toLowerCase()&&r.brand.toLowerCase()===brand.toLowerCase()))throw new Error('This brand/model is already in the session.');
+const beeStars=$('beeStars').value,beeUrl=$('beeUrl').value.trim(),beeEnd=$('beeEnd').value;
+if(beeStars&&(!beeUrl||!validUrl(beeUrl)||!beeEnd))throw new Error('BEE rating needs an official source URL and label period end date.');
+const price=$('price').value,rating=$('rating').value,reviews=$('reviews').value,retailerUrl=$('retailerUrl').value.trim(),retailerDate=$('retailerDate').value;
+if((price||rating||reviews)&&(!retailerUrl||!validUrl(retailerUrl)||!retailerDate||!$('retailer').value.trim()))throw new Error('Retailer price/rating/review data needs retailer name, product URL and checked date.');
+const record={brand,model_number:model,category_id:category,subcategory_id:$('subcategory').value.trim()||null,source_url:specUrl,checked_at:checked,verification_status:$('verification').value,specifications:specsFromText($('specs').value),bee:beeStars?{star_rating:Number(beeStars),label_period_end:beeEnd,source_url:beeUrl,checked_at:checked}:null,retailer:retailerUrl?{name:$('retailer').value.trim(),product_url:retailerUrl,price_inr:price?Number(price):null,rating:rating?Number(rating):null,review_count:reviews?Number(reviews):null,checked_at:retailerDate}:null,affiliate_url:$('affiliateUrl').value.trim()||null,editorial_notes:$('notes').value.trim()||null};
+if(record.affiliate_url&&!validUrl(record.affiliate_url))throw new Error('Affiliate URL must be a valid HTTP/HTTPS URL.');
+records.push(record);render();message('Product record validated and added to this browser session.','ok');
+}catch(e){message(e.message,'error');}
+});
+$('export').addEventListener('click',()=>{if(!records.length){message('Add at least one product record before exporting.','error');return;}const payload={schema_version:1,generated_at:new Date().toISOString(),products:records};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='appliance-catalogue-review.json';a.click();URL.revokeObjectURL(url);message('JSON export created. Review it before publishing.','ok');});
+$('clear').addEventListener('click',()=>{records.splice(0,records.length);render();message('Session records cleared.','ok');});
+$('year').textContent=new Date().getFullYear();render();
+})();
+</script></body></html>
